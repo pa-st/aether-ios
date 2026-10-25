@@ -18,7 +18,7 @@ jobs:
         run: |
           xcodebuild archive \
             -project Aether.xcodeproj \
-            -target Aether \
+            -scheme Aether \
             -configuration Release \
             -archivePath build/Aether.xcarchive \
             CODE_SIGNING_ALLOWED=NO \
