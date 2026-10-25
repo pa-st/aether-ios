@@ -40,7 +40,8 @@ pbx = """// !$*UTF8*$!
 {children}\t\t\t\t{PLISTREF},
 \t\t); }};
 \t\t{PROD} = {{isa = PBXGroup; name = Products; sourceTree = "<group>"; children = ({APPREF}); }};
-\t\t{TARG} = {{isa = PBXNativeTarget; buildPhases = ({SRCPH}, {FWPH}); buildRules = (); dependencies = (); name = Aether; productName = Aether; productReference = {APPREF}; productType = "com.apple.product-type.application"; }};
+\t\t{TARG} = {{isa = PBXNativeTarget; buildPhases = ({SRCPH}, {FWPH}); buildRules = (); buildConfigurationList = {CONF_TARG};
+		dependencies = (); name = Aether; productName = Aether; productReference = {APPREF}; productType = "com.apple.product-type.application"; }};
 \t\t{SRCPH} = {{isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (
 {files}\t\t\t); runOnlyForDeploymentPostprocessing = 0; }};
 \t\t{FWPH} = {{isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; }};
