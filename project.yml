@@ -1,0 +1,44 @@
+name: Aether
+options:
+  bundleIdPrefix: dev.aether
+  deploymentTarget:
+    iOS: "26.0"
+targets:
+  Aether:
+    type: application
+    platform: iOS
+    deploymentTarget: "26.0"
+    sources:
+      - path: Sources
+    settings:
+      base:
+        SWIFT_VERSION: "6.0"
+        IPHONEOS_DEPLOYMENT_TARGET: "26.0"
+        TARGETED_DEVICE_FAMILY: "1"
+        SUPPORTS_MACCATALYST: NO
+        CODE_SIGNING_ALLOWED: NO
+        CODE_SIGN_IDENTITY: ""
+    info:
+      properties:
+        CFBundleShortVersionString: "1.0"
+        CFBundleVersion: "1"
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+schemes:
+  Aether:
+    build:
+      targets:
+        Aether: all
+    run:
+      config: Debug
+    archive:
+      config: Release
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+configs:
+  Debug: debug
+  Release: release

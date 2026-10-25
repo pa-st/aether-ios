@@ -1,0 +1,25 @@
+# Xcode / xcodegen
+build/
+*.xcarchive
+*.ipa
+*.dSYM.zip
+*.dSYM/
+DerivedData/
+*.xcodeproj/
+*.xcworkspace/
+!project.yml
+
+# Swift / Xcode user state
+*.moved-aside
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+xcuserdata/
+*.xccheckout
+*.xcscmblueprint
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
