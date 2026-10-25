@@ -162,7 +162,7 @@ struct AetherClient {
         AsyncThrowingStream { continuation in
             Task {
                 do {
-                    let payload = ChatRequest(model: model, content: content, search: search, brain: brain, conversationId: conversationId, client_msg_id: UUID().uuidString)
+                    let payload = ChatRequest(model: model, content: content, search: search, brain: brain, conversation_id: conversationId, client_msg_id: UUID().uuidString)
                     let body = try JSONEncoder().encode(payload)
                     let req = try makeRequest(path: "/api/chat", method: "POST", body: body)
                     let (bytes, resp) = try await URLSession.shared.bytes(for: req)
