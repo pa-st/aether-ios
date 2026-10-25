@@ -37,3 +37,46 @@ jobs:
         with:
           name: Aether-unsigned.ipa
           path: Aether-unsigned.ipa
+
+  shots:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate Xcode project
+        run: python3 tools/gen_project.py
+
+      - name: Build for simulator
+        run: |
+          xcodebuild build \
+            -project Aether.xcodeproj \
+            -scheme Aether \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -derivedDataPath build-sim \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGN_IDENTITY=""
+
+      - name: Boot iPhone simulator
+        run: |
+          UDID=$(xcrun simctl list devices available -j | python3 -c "import json,sys; ds=[d for rs in json.load(sys.stdin)['devices'].values() for d in rs if 'iPhone' in d['name'] and d['isAvailable']]; print(ds[0]['udid'])")
+          echo "UDID=$UDID" >> $GITHUB_ENV
+          xcrun simctl boot "$UDID" || true
+          xcrun simctl install "$UDID" "build-sim/Build/Products/Debug-iphonesimulator/Aether.app"
+
+      - name: Screenshot every tab
+        run: |
+          mkdir -p shots
+          for TAB in Chat Research Brain Library Status Settings; do
+            xcrun simctl terminate "$UDID" dev.aether.Aether || true
+            xcrun simctl launch "$UDID" dev.aether.Aether -AETHER_TAB "$TAB"
+            sleep 3
+            xcrun simctl io "$UDID" screenshot "shots/$TAB.png"
+          done
+          ls -la shots/
+
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: simulator-shots
+          path: shots/
