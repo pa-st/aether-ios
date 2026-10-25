@@ -46,7 +46,7 @@ pbx = """// !$*UTF8*$!
 \t\t{DBG_PROJ} = {{isa = XCBuildConfiguration; buildSettings = {{ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; SWIFT_VERSION = 6.0; }}; name = Debug; }};
 \t\t{REL_PROJ} = {{isa = XCBuildConfiguration; buildSettings = {{ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; SWIFT_VERSION = 6.0; }}; name = Release; }};
 \t\t{DBG_TARG} = {{isa = XCBuildConfiguration; buildSettings = {{
-\t\t\t\tASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+\t\t\t\tASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;\n\t\t\t\tGENERATE_INFOPLIST_FILE = YES;
 \t\t\t\tCODE_SIGNING_ALLOWED = NO;
 \t\t\t\tCODE_SIGN_IDENTITY = "";
 \t\t\t\tINFOPLIST_KEY_CFBundleDisplayName = Aether;
@@ -62,7 +62,7 @@ pbx = """// !$*UTF8*$!
 \t\t\t\tTARGETED_DEVICE_FAMILY = 1;
 \t\t\t}}; name = Debug; }};
 \t\t{REL_TARG} = {{isa = XCBuildConfiguration; buildSettings = {{
-\t\t\t\tASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+\t\t\t\tASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;\n\t\t\t\tGENERATE_INFOPLIST_FILE = YES;
 \t\t\t\tCODE_SIGNING_ALLOWED = NO;
 \t\t\t\tCODE_SIGN_IDENTITY = "";
 \t\t\t\tINFOPLIST_KEY_CFBundleDisplayName = Aether;
