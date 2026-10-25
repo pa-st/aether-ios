@@ -23,7 +23,8 @@ jobs:
             -sdk iphoneos \
             -derivedDataPath build \
             CODE_SIGNING_ALLOWED=NO \
-            CODE_SIGN_IDENTITY=""
+            CODE_SIGN_IDENTITY="" \
+            VALIDATE_PRODUCT=NO
 
       - name: Package unsigned IPA
         run: |
