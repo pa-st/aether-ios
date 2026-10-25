@@ -147,6 +147,15 @@ struct BrainItem: Codable, Identifiable {
         source = try c.decodeIfPresent(String.self, forKey: .source)
         tags = try c.decodeIfPresent([String].self, forKey: .tags)
     }
+
+    func encode(to encoder: Encoder) throws {
+        var c = encoder.container(keyedBy: CodingKeys.self)
+        try c.encodeIfPresent(id, forKey: .id)
+        try c.encodeIfPresent(title, forKey: .title)
+        try c.encodeIfPresent(content, forKey: .content)
+        try c.encodeIfPresent(source, forKey: .source)
+        try c.encodeIfPresent(tags, forKey: .tags)
+    }
 }
 
 struct TagCount: Codable {
@@ -175,5 +184,11 @@ struct ModelInfo: Codable, Identifiable {
         id = try c.decodeIfPresent(String.self, forKey: .id)
             ?? c.decodeIfPresent(String.self, forKey: .model)
         name = try c.decodeIfPresent(String.self, forKey: .name)
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var c = encoder.container(keyedBy: CodingKeys.self)
+        try c.encodeIfPresent(id, forKey: .id)
+        try c.encodeIfPresent(name, forKey: .name)
     }
 }
