@@ -14,20 +14,21 @@ jobs:
       - name: Generate Xcode project
         run: python3 tools/gen_project.py
 
-      - name: Archive (unsigned)
+      - name: Build (unsigned, device SDK)
         run: |
-          xcodebuild archive \
+          xcodebuild build \
             -project Aether.xcodeproj \
             -scheme Aether \
             -configuration Release \
-            -archivePath build/Aether.xcarchive \
+            -sdk iphoneos \
+            -derivedDataPath build \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGN_IDENTITY=""
 
       - name: Package unsigned IPA
         run: |
           mkdir -p Payload
-          cp -R build/Aether.xcarchive/Products/Applications/Aether.app Payload/
+          cp -R build/Build/Products/Release-iphoneos/Aether.app Payload/
           zip -r Aether-unsigned.ipa Payload
 
       - name: Upload artifact
