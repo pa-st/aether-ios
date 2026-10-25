@@ -106,6 +106,15 @@ struct BrainView: View {
         }
         .searchable(text: $vm.query)
         .navigationTitle("Brain")
+        .overlay {
+            if vm.inbox.isEmpty && vm.filtered.isEmpty && vm.errorText == nil && vm.query.isEmpty {
+                ContentUnavailableView(
+                    "Brain is empty",
+                    systemImage: "brain.head.profile",
+                    description: Text("Tap the compose button to capture your first note.")
+                )
+            }
+        }
         .toolbar {
             Button { vm.showCapture = true } label: { Image(systemName: "square.and.pencil") }
                 .glassEffect(.regular, in: .circle)

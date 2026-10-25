@@ -70,6 +70,14 @@ struct ChatView: View {
             ScrollViewReader { proxy in
                 ScrollView {
                     LazyVStack(spacing: 10) {
+                        if vm.messages.isEmpty && vm.errorText == nil && !vm.isStreaming {
+                            ContentUnavailableView(
+                                "Ask anything",
+                                systemImage: "bubble.left.and.bubble.right",
+                                description: Text("Messages stream here. Toggle Search for the web, Brain for your notes.")
+                            )
+                            .padding(.top, 60)
+                        }
                         ForEach(vm.messages) { msg in
                             messageBubble(msg)
                                 .id(msg.id)
@@ -94,17 +102,23 @@ struct ChatView: View {
     }
 
     private var controlsBar: some View {
-        HStack {
+        HStack(spacing: 10) {
             Picker("Model", selection: $vm.selectedModelId) {
                 ForEach(vm.models, id: \.id) { m in
                     Text(m.name ?? m.id ?? "?").tag(m.id)
                 }
             }
             .pickerStyle(.menu)
-            Toggle("Search", isOn: $vm.searchEnabled)
-            Toggle("Brain", isOn: $vm.brainEnabled)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            HStack(spacing: 4) {
+                Text("Search").font(.caption).foregroundStyle(.secondary)
+                Toggle("", isOn: $vm.searchEnabled).labelsHidden()
+            }
+            HStack(spacing: 4) {
+                Text("Brain").font(.caption).foregroundStyle(.secondary)
+                Toggle("", isOn: $vm.brainEnabled).labelsHidden()
+            }
         }
-        .font(.footnote)
         .padding(.horizontal)
         .padding(.vertical, 6)
     }

@@ -49,6 +49,15 @@ struct LibraryView: View {
                 }
             }
         }
+        .overlay {
+            if vm.researchAndOutputs.isEmpty && vm.errorText == nil {
+                ContentUnavailableView(
+                    "Library is empty",
+                    systemImage: "books.vertical",
+                    description: Text("Research reports and saved outputs will appear here.")
+                )
+            }
+        }
         .navigationTitle("Library")
         .task { await vm.load(client: AetherClient(settings: settings)) }
         .refreshable { await vm.load(client: AetherClient(settings: settings)) }

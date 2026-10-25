@@ -68,6 +68,15 @@ struct ResearchView: View {
                 }
             }
         }
+        .overlay {
+            if vm.runs.isEmpty && vm.errorText == nil {
+                ContentUnavailableView(
+                    "No research yet",
+                    systemImage: "magnifyingglass",
+                    description: Text("Tap + to start your first deep-research run.")
+                )
+            }
+        }
         .navigationTitle("Research")
         .toolbar {
             Button { vm.showComposer = true } label: { Image(systemName: "plus") }
