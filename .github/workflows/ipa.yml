@@ -11,20 +11,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install xcodegen if missing
-        run: |
-          if ! command -v xcodegen >/dev/null 2>&1; then
-            brew install xcodegen
-          fi
-
       - name: Generate Xcode project
-        run: xcodegen generate
+        run: python3 tools/gen_project.py
 
       - name: Archive (unsigned)
         run: |
           xcodebuild archive \
             -project Aether.xcodeproj \
-            -scheme Aether \
+            -target Aether \
             -configuration Release \
             -archivePath build/Aether.xcarchive \
             CODE_SIGNING_ALLOWED=NO \

@@ -18,11 +18,10 @@ signing config, or API keys live in this repo.
 
 ## Local build
 
-Requirements: Xcode 26, iOS 26 SDK, `xcodegen`.
+Requirements: Xcode 26, iOS 26 SDK (no other tools).
 
 ```sh
-brew install xcodegen   # if missing
-xcodegen generate
+python3 tools/gen_project.py
 open Aether.xcodeproj
 ```
 
