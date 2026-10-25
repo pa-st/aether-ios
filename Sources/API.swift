@@ -15,8 +15,10 @@ enum APIError: Error, LocalizedError {
 }
 
 /// JSON client for the Aether backend. All paths live under /api/.
-/// Sends `Authorization: Bearer <key>` on every request when a key is set.
-struct AetherClient {
+/// Sends `Authorization: Bearer *** on every request when a key is set.
+/// Sendable by convention: it only reads immutable-per-call strings off settings.
+/// AppSettings itself is only ever mutated on the MainActor (Settings screen).
+struct AetherClient: @unchecked Sendable {
     let settings: AppSettings
 
     private func makeRequest(path: String, method: String, query: [String: String] = [:], body: Data? = nil) throws -> URLRequest {
