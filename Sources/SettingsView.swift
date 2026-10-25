@@ -9,7 +9,6 @@ struct SettingsView: View {
         Form {
             Section("Server") {
                 TextField("Base URL", text: $settings.baseURL)
-                    .keyboardType(.URL)
                     .autocorrectionDisabled()
                 SecureField("API key (optional)", text: $settings.apiKey)
                 Button(testing ? "Testing…" : "Test") { Task { await test() } }
