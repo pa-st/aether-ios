@@ -50,6 +50,7 @@ pbx = """// !$*UTF8*$!
 \t\t{REL_PROJ} = {{isa = XCBuildConfiguration; buildSettings = {{ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; SWIFT_VERSION = 6.0; }}; name = Release; }};
 \t\t{DBG_TARG} = {{isa = XCBuildConfiguration; buildSettings = {{
 \t\t\t\tASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;\n\t\t\t\tINFOPLIST_FILE = Sources/Info.plist;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 \t\t\t\tCODE_SIGNING_ALLOWED = NO;
 \t\t\t\tCODE_SIGN_IDENTITY = "";
 \t\t\t\t
@@ -66,6 +67,7 @@ pbx = """// !$*UTF8*$!
 \t\t\t}}; name = Debug; }};
 \t\t{REL_TARG} = {{isa = XCBuildConfiguration; buildSettings = {{
 \t\t\t\tASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;\n\t\t\t\tINFOPLIST_FILE = Sources/Info.plist;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 \t\t\t\tCODE_SIGNING_ALLOWED = NO;
 \t\t\t\tCODE_SIGN_IDENTITY = "";
 \t\t\t\t
