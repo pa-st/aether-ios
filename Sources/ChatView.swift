@@ -103,13 +103,18 @@ struct ChatView: View {
 
     private var controlsBar: some View {
         HStack(spacing: 10) {
-            Picker("Model", selection: $vm.selectedModelId) {
-                ForEach(vm.models, id: \.id) { m in
-                    Text(m.name ?? m.id ?? "?").tag(m.id)
+            if vm.models.isEmpty {
+                Text("Offline").font(.caption).foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            } else {
+                Picker("Model", selection: $vm.selectedModelId) {
+                    ForEach(vm.models, id: \.id) { m in
+                        Text(m.name ?? m.id ?? "?").tag(m.id)
+                    }
                 }
+                .pickerStyle(.menu)
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
-            .pickerStyle(.menu)
-            .frame(maxWidth: .infinity, alignment: .leading)
             HStack(spacing: 4) {
                 Text("Search").font(.caption).foregroundStyle(.secondary)
                 Toggle("", isOn: $vm.searchEnabled).labelsHidden()
